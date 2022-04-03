@@ -11,6 +11,11 @@ void CropFilter::ApplyFilter(ImageBMP &img, const std::vector<ArgumentParser::Pa
         throw IncorrectArgumentsError();
     }
 
-    auto pixel_map = CropPixelMap(img.GetPixelMap(), width, height);
+    ImageBMP::PixelMap pixel_map = img.GetPixelMap();
+    pixel_map.resize(width);
+    for (size_t i = 0; i < height; ++i) {
+        pixel_map[i].resize(width);
+    }
+
     img.SetPixelMap(pixel_map);
 }

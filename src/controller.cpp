@@ -27,4 +27,7 @@ void Controller::RunPipeline(ImageBMP& img, const std::vector<ArgumentParser::Ar
         }
         filter_map[filter.filter_name]->ApplyFilter(img, filter.parameters);
     }
+    for (auto& [key, filter] : filter_map) {
+        delete filter;
+    }
 }

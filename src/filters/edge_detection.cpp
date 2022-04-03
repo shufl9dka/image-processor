@@ -1,4 +1,5 @@
 #include "../../headers/exceptions.h"
+#include "../../headers/filters/grayscale.h"
 #include "../../headers/filters/edge_detection.h"
 
 const uint8_t MAX_PIXEL_VALUE = 255;
@@ -11,7 +12,7 @@ void EdgeDetectionFilter::ApplyFilter(ImageBMP& img, const std::vector<ArgumentP
         throw IncorrectArgumentsError();
     }
 
-    auto pixel_map = GrayscaleTransform(img.GetPixelMap());
+    auto pixel_map = GrayscaleFilter::GrayscaleTransform(img.GetPixelMap());
     const Matrix<double> edging_matrix = {{0, -1, 0},
                                           {-1, 4, -1},
                                           {0, -1, 0}};

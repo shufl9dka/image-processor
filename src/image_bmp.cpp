@@ -5,7 +5,7 @@
 #include "../headers/exceptions.h"
 #include "../headers/image_bmp.h"
 
-ImageBMP::ImageBMP(const std::string& filename) {
+ImageBMP::ImageBMP(const std::string &filename) {
     std::ifstream in(filename, std::ios_base::in | std::ios_base::binary);
     if (!in.good()) {
         throw InputReadError();
@@ -69,12 +69,4 @@ void ImageBMP::Save(const std::string& filename) {
 
     delete[] padding;
     out.close();
-}
-
-ImageBMP::PixelMap ImageBMP::GetPixelMap() const {
-    return pixel_map;
-}
-
-void ImageBMP::SetPixelMap(const ImageBMP::PixelMap& new_pixel_map) {
-    pixel_map = new_pixel_map;
 }

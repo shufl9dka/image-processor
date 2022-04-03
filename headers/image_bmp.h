@@ -4,10 +4,11 @@
 #include <cstdint>
 #include <string>
 #include <vector>
+#include "../headers/image_base.h"
 
 #pragma pack(push, 1)
 
-class ImageBMP {
+class ImageBMP: public ImageBase {
 public:
     struct BitMapFileHeader {
         uint16_t type;
@@ -31,29 +32,13 @@ public:
         uint32_t important_colors;
     };
 
-    struct Color {
-        uint8_t red;
-        uint8_t green;
-        uint8_t blue;
+    explicit ImageBMP(const std::string &filename);
 
-        Color(uint8_t red, uint8_t green, uint8_t blue) : red(red), green(green), blue(blue) {}
-        Color() : red(0), green(0), blue(0) {}
-    };
-
-    using PixelMap = std::vector<std::vector<Color>>;
-
-    explicit ImageBMP(const std::string& filename);
-
-    void Save(const std::string& filename);
-
-    [[nodiscard]] std::vector<std::vector<Color>> GetPixelMap() const;
-
-    void SetPixelMap(const PixelMap& new_pixel_map);
+    void Save(const std::string& filename) override;
 
 private:
     BitMapFileHeader bmp_header{};
     BitMapInfoHeader dib_header{};
-    std::vector<std::vector<Color>> pixel_map;
 };
 
 #pragma pack(pop)

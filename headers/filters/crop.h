@@ -3,7 +3,7 @@
 
 #include "../../headers/filters/base_filters.h"
 
-class CropFilter : public CropBaseFilter {
+class CropFilter : public BaseFilter {
 public:
     void ApplyFilter(ImageBMP &img, const std::vector<ArgumentParser::ParameterType>& parameters) const override;
 };
